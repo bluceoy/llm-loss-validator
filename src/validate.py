@@ -602,6 +602,7 @@ def loop(
                 last_successful_request_time[index] = time.time()
                 break
             else:
+                logger.info("resp = {resp.json()}")
                 if resp.json() == {
                     "detail": "No task submissions available to validate"
                 }:
