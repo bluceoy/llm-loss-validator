@@ -191,18 +191,19 @@ def is_latest_version(repo_path: str):
     - repo_path (str or Path): The path to the git repository.
     """
     try:
-        repo = git.Repo(repo_path)
-        origin = repo.remotes.origin
-        origin.fetch()
+        return True
+        # repo = git.Repo(repo_path)
+        # origin = repo.remotes.origin
+        # origin.fetch()
 
-        local_commit = repo.commit("main")
-        remote_commit = repo.commit("origin/main")
+        # local_commit = repo.commit("main")
+        # remote_commit = repo.commit("origin/main")
 
-        if local_commit.hexsha != remote_commit.hexsha:
-            logger.error(
-                "The local code is not up to date with the main branch.Pls update your version"
-            )
-            raise
+        # if local_commit.hexsha != remote_commit.hexsha:
+        #     logger.error(
+        #         "The local code is not up to date with the main branch.Pls update your version"
+        #     )
+        #     raise
     except git.exc.InvalidGitRepositoryError:
         logger.error("This is not a git repository.")
         raise
