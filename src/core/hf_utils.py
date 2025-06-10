@@ -23,4 +23,4 @@ def download_lora_config(repo_id: str, revision: str) -> bool:
 
 
 def download_lora_repo(repo_id: str, revision: str) -> None:
-    api.snapshot_download(repo_id=repo_id, local_dir="lora", revision=revision)
+    api.snapshot_download(repo_id=repo_id, local_dir="lora", revision=revision, endpoint="https://hf-mirror.com")
