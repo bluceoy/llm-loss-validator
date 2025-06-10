@@ -11,6 +11,7 @@ def download_lora_config(repo_id: str, revision: str) -> bool:
             filename="adapter_config.json",
             local_dir="lora",
             revision=revision,
+            endpoint="https://hf-mirror.com"
         )
     except Exception as e:
         if "adapter_config.json" in str(e):

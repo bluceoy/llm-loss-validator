@@ -71,6 +71,7 @@ if HF_TOKEN is None:
 )
 def download_file(url):
     try:
+        logger.info(f"download_file = {url}")
         # Send a GET request to the signed URL
         response = requests.get(url, stream=True)
         # Raise an HTTPError if the HTTP request returned an unsuccessful status code
@@ -322,6 +323,8 @@ def validate(
         cached_lora = is_lora
         adapter_config_path = Path("lora/adapter_config.json")
 
+        logger.info(f"model_name_or_path = {model_name_or_path}, revision = {revision}, is_lora = {is_lora}")
+
         if is_lora:
             if adapter_config_path.exists():
                 logger.info(
@@ -391,6 +394,7 @@ def validate(
                 f"Using its own path for tokenizer: {model_name_or_path}."
             )
 
+        logger.info(f"tokenizer_model_path = {tokenizer_model_path}")
         tokenizer = load_tokenizer(tokenizer_model_path)
         eval_dataset = load_sft_dataset(
             eval_file, context_length, template_name=base_model, tokenizer=tokenizer
@@ -626,6 +630,7 @@ def loop(
         if resp is None or resp.status_code != 200:
             continue
         resp = resp.json()
+        logger.info(f"resp={resp}")
         eval_file = download_file(resp["data"]["validation_set_url"])
         revision = resp["task_submission"]["data"].get("revision", "main")
         assignment_id = resp["id"]
