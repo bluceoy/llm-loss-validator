@@ -542,7 +542,9 @@ def validate(
         # remove lora folder
         if os.path.exists("lora"):
             logger.debug("Removing lora folder")
-            os.system("rm -rf lora")
+            #os.system("rm -rf lora")
+            newdir = "lora-" + str(assignment_id)
+            shutil.move("lora", newdir)
 
 
 @click.command()
@@ -671,7 +673,7 @@ def loop(
                     )
                     fed_ledger.mark_assignment_as_failed(assignment_id)
 
-        os.remove(eval_file)
+        #os.remove(eval_file)
 
 
 cli.add_command(validate)
