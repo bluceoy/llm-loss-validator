@@ -10,8 +10,7 @@ def download_lora_config(repo_id: str, revision: str) -> bool:
             repo_id=repo_id,
             filename="adapter_config.json",
             local_dir="lora",
-            revision=revision,
-            endpoint="https://hf-mirror.com"
+            revision=revision
         )
     except Exception as e:
         if "adapter_config.json" in str(e):
@@ -23,4 +22,4 @@ def download_lora_config(repo_id: str, revision: str) -> bool:
 
 
 def download_lora_repo(repo_id: str, revision: str) -> None:
-    api.snapshot_download(repo_id=repo_id, local_dir="lora", revision=revision, endpoint="https://hf-mirror.com")
+    api.snapshot_download(repo_id=repo_id, local_dir="lora", revision=revision)
