@@ -1,7 +1,7 @@
 from huggingface_hub import HfApi
 from loguru import logger
 
-api = HfApi()
+api = HfApi(endpoint="https://hf-mirror.com")
 
 
 def download_lora_config(repo_id: str, revision: str) -> bool:
