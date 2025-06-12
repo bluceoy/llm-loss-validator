@@ -13,7 +13,9 @@ class FedLedger:
             "Content-Type": "application/json",
         }
         self.proxies = {
-            "https": "http://127.0.0.1:7897"
+            #"https": "http://127.0.0.1:7897",
+            #"https": "http://127.0.0.1:1081",
+            "https": "socks5://127.0.0.1:1080",
         }
 
     def request_validation_assignment(self, task_id: str):
