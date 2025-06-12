@@ -12,12 +12,15 @@ class FedLedger:
             "flock-api-key": self.api_key,
             "Content-Type": "application/json",
         }
+        self.proxies = {
+            "https": "http://127.0.0.1:7897"
+        }
 
     def request_validation_assignment(self, task_id: str):
         for i in range(5):
             try:
                 url = f"{self.url}/tasks/request-validation-assignment/{task_id}"
-                response = requests.post(url, headers=self.headers)
+                response = requests.post(url, headers=self.headers, proxies=self.proxies)
                 logger.info(f"request_validation_assignment, code = {response.status_code}")
                 logger.info(f"request_validation_assignment, text = {response.text}")
                 return response
@@ -39,6 +42,7 @@ class FedLedger:
                             "gpu_type": gpu_type,
                         },
                     },
+                    proxies=self.proxies,
                 )
                 logger.info(f"submit_validation_result, code = {response.status_code}")
                 logger.info(f"submit_validation_result, text = {response.text}")
@@ -58,6 +62,7 @@ class FedLedger:
                     json={
                         "status": "failed",
                     },
+                    proxies=self.proxies,
                 )
                 logger.info(f"mark_assignment_as_failed, code = {response.status_code}")
                 logger.info(f"mark_assignment_as_failed, text = {response.text}")

@@ -1,6 +1,7 @@
 from huggingface_hub import HfApi
 from loguru import logger
 
+#api = HfApi()
 api = HfApi(endpoint="https://hf-mirror.com")
 
 
